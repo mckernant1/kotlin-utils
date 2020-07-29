@@ -31,7 +31,7 @@ internal class FileHandlerTest {
             2 + 3
         }
         fileHandler.getResult("five", x)
-        assert(File("store/four.ser").exists())
+        assert(File("store/five.ser").exists())
         fileHandler.getResult("five", x)
     }
 }
