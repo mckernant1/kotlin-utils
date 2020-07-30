@@ -58,6 +58,7 @@ class FileHandler(
                 else -> error("")
             }
         return if (Duration.between(content.date, LocalDateTime.now()) < duration) {
+            @Suppress("UNCHECKED_CAST")
             content.storedItem as T
         } else {
             log("File is expired. Deleting")

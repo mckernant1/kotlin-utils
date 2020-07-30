@@ -1,5 +1,6 @@
 package com.github.mckernant1.fs
 
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import java.io.File
 import java.time.Duration
@@ -21,7 +22,7 @@ internal class FileHandlerTest {
             2 + 2
         }
         fileHandler.getResult("four", x)
-        assert(File("store/four.ser").exists())
+        assertTrue(File("store/four.ser").exists())
         fileHandler.getResult("four", x)
     }
 
@@ -31,7 +32,7 @@ internal class FileHandlerTest {
             2 + 3
         }
         fileHandler.getResult("five", x)
-        assert(File("store/five.ser").exists())
+        assertTrue(File("store/five.ser").exists())
         fileHandler.getResult("five", x)
     }
 }

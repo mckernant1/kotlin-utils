@@ -25,6 +25,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7")
     testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
 }
 
@@ -52,11 +53,6 @@ tasks.jacocoTestReport {
         csv.isEnabled = true
         html.destination = file("${buildDir}/jacocoHtml")
     }
-    classDirectories.setFrom(
-        sourceSets.main.get().output.asFileTree.matching {
-            include("**/*Client*")
-        }
-    )
 }
 
 jacoco {
