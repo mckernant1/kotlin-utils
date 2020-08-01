@@ -14,4 +14,13 @@ internal class SchedulerTest {
             ++c
         }.join()
     }
+
+
+    @Test
+    fun startFStoreSchedule() {
+        var c = 0
+        startFileStoreSchedule(Duration.ofSeconds(1), { c == 5 }) {
+            ++c
+        }
+    }
 }
