@@ -8,7 +8,7 @@ import kotlin.concurrent.thread
 
 fun startJobThread(
     pauseDuration: Duration,
-    stopCondition: () -> Boolean = { true },
+    stopCondition: () -> Boolean = { false },
     func: () -> Unit
 ): Thread {
     return thread {
@@ -23,7 +23,7 @@ val fileHandler = FileHandler()
 
 fun <T : Serializable> startFileStoreSchedule(
     pauseDuration: Duration = Duration.ofHours(1),
-    stopCondition: () -> Boolean = {true},
+    stopCondition: () -> Boolean = { false },
     func: () -> T) {
     val uuid = UUID.randomUUID().toString()
     startJobThread(pauseDuration, stopCondition) {
