@@ -1,2 +1,2 @@
-rootProject.name = "fs-scheduler"
+rootProject.name = "kotlin-file-cache"
 
