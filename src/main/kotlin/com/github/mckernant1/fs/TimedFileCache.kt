@@ -4,12 +4,10 @@ import java.io.*
 import java.time.Duration
 import java.time.LocalDateTime
 
-class FileHandler(
+class TimedFileCache(
     private val location: String = "store",
     private val duration: Duration = Duration.ofHours(1),
-    private val logger: PrintStream = PrintStream(object : OutputStream() {
-        override fun write(p0: Int) {}
-    })
+    private val logger: (String) -> Unit = {}
 ) {
 
     private val storageFolder: File = File(location)
@@ -21,13 +19,13 @@ class FileHandler(
     fun <T : Serializable> getResult(name: String, alternativeFunction: () -> T): T {
         return when (val retrieved = retrieve<T>(name)) {
             null -> {
-                log("Did not retrieve file. Calling alternative function")
+                logger("Did not retrieve file for name: '$name'. Calling alternative function")
                 val res = alternativeFunction.invoke()
                 save(name, res)
                 res
             }
             else -> {
-                log("Returning retrieved object")
+                logger("Returning retrieved object for name: '$name'")
                 retrieved
             }
         }
@@ -49,7 +47,7 @@ class FileHandler(
     private fun <T : Serializable> retrieve(name: String): T? {
         val file = File(storageFolder,"$name.ser")
         if (!file.exists()) {
-            log("File does not exist")
+            logger("File does not exist for name '$name'")
             return null
         }
         val content =
@@ -61,13 +59,11 @@ class FileHandler(
             @Suppress("UNCHECKED_CAST")
             content.storedItem as T
         } else {
-            log("File is expired. Deleting")
+            logger("File for name: '$name' is expired. Deleting")
             file.delete()
             null
         }
     }
-
-    private fun log(s: String) = logger.println("[FileHandler] $s")
 
     private data class FileContent<T : Serializable>(
         val fileName: String,

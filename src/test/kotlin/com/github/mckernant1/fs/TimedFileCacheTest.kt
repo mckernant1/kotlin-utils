@@ -5,15 +5,12 @@ import org.junit.jupiter.api.Test
 import java.io.File
 import java.time.Duration
 
-internal class FileHandlerTest {
+internal class TimedFileCacheTest {
 
-    private val fileHandler = FileHandler(
-        logger = System.out
-    )
-
-    private val fileHandler2 = FileHandler(
-        location = "fstore",
-        duration = Duration.ofMillis(1)
+    private val fileHandler = TimedFileCache(
+        logger = {
+            println(it)
+        }
     )
 
     @Test
@@ -36,3 +33,4 @@ internal class FileHandlerTest {
         fileHandler.getResult("five", x)
     }
 }
+

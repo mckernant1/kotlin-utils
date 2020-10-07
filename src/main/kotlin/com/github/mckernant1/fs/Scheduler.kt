@@ -3,30 +3,32 @@ package com.github.mckernant1.fs
 import java.io.Serializable
 import java.time.Duration
 import java.util.*
-import kotlin.concurrent.thread
+import kotlin.concurrent.scheduleAtFixedRate
 
 
-fun startJobThread(
+fun Timer.startJobThread(
     pauseDuration: Duration,
     stopCondition: () -> Boolean = { false },
     func: () -> Unit
-): Thread {
-    return thread {
-        while (!stopCondition()) {
-            func()
-            Thread.sleep(pauseDuration.toMillis())
+): TimerTask {
+    return this.scheduleAtFixedRate(0, pauseDuration.toMillis()) {
+        if (stopCondition()) {
+            this.cancel()
         }
+        func()
     }
 }
 
-val fileHandler = FileHandler()
 
-fun <T : Serializable> startFileStoreSchedule(
+
+fun <T : Serializable> Timer.startFileStoreRefresher(
     pauseDuration: Duration = Duration.ofHours(1),
     stopCondition: () -> Boolean = { false },
-    func: () -> T) {
+    func: () -> T
+): TimerTask {
+    val timedFileCache = TimedFileCache()
     val uuid = UUID.randomUUID().toString()
-    startJobThread(pauseDuration, stopCondition) {
-        fileHandler.getResult(uuid, func)
+    return startJobThread(pauseDuration, stopCondition) {
+        timedFileCache.getResult(uuid, func)
     }
 }
