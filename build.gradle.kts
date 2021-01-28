@@ -79,7 +79,7 @@ publishing.repositories.convention[RepositoryHandlerOssrhExtension::class.java].
 publishing {
     publications {
         create<MavenPublication>("default") {
-            artifactId = "kotlin-file-cache"
+            artifactId = "kotlin-utils"
             from(components["java"])
             val sourcesJar by tasks.creating(Jar::class) {
                 val sourceSets: SourceSetContainer by project
@@ -89,9 +89,9 @@ publishing {
             artifact(dokkaJar)
             artifact(sourcesJar)
             pom {
-                name.set("fs-scheduler")
+                name.set("kotlin-utils")
                 description.set("A light file system storage system")
-                url.set("https://github.com/mckernant1/kotlin-file-cache")
+                url.set("https://github.com/mckernant1/kotlin-utils")
                 licenses {
                     license {
                         name.set("The Apache License, Version 2.0")
@@ -106,9 +106,9 @@ publishing {
                     }
                 }
                 scm {
-                    connection.set("scm:git:git://github.com/mckernant1/kotlin-file-cache.git")
-                    developerConnection.set("scm:git:ssh://github.com/mckernant1/kotlin-file-cache.git")
-                    url.set("https://github.com/mckernant1/fs-scheduler")
+                    connection.set("scm:git:git://github.com/mckernant1/kotlin-utils.git")
+                    developerConnection.set("scm:git:ssh://github.com/mckernant1/kotlin-utils.git")
+                    url.set("https://github.com/mckernant1/kotlin-utils")
                 }
             }
         }

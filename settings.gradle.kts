@@ -1,2 +1,2 @@
-rootProject.name = "kotlin-file-cache"
+rootProject.name = "kotlin-utils"
 
