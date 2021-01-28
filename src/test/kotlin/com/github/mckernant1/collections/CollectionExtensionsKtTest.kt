@@ -8,9 +8,8 @@ internal class CollectionExtensionsKtTest {
     @Test
     fun testCartesianProduct() {
         val l1 = listOf(1, 2)
-        val l2 = listOf("a", "b".equals("Asdf", ignoreCase = true))
-        println(l1.cartesianProduct(l2) == listOf(Pair(1, "a"), Pair(2, "a"), Pair(1, "b"), Pair(2, "b")))
-        assertEquals(l1.cartesianProduct(l2), listOf(Pair(1, "a"), Pair(2, "a"), Pair(1, "b"), Pair(2, "b")))
+        val l2 = listOf("a", "b")
+        assertEquals(l1.cartesianProduct(l2), listOf(Pair(1, "a"), Pair(1, "b"), Pair(2, "a"), Pair(2, "b")))
     }
 
     @Test
