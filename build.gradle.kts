@@ -16,7 +16,7 @@ plugins {
 }
 
 group = "com.github.mckernant1"
-version = "0.0.4"
+version = "0.0.5"
 
 repositories {
     jcenter()
