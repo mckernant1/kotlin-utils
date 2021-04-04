@@ -10,7 +10,7 @@ plugins {
     `java-library`
     signing
     jacoco
-    kotlin("jvm") version "1.3.72"
+    kotlin("jvm") version "1.4.32"
     id("org.jetbrains.dokka") version "0.10.1"
     id("name.remal.maven-publish-ossrh") version "1.0.192"
 }
@@ -25,7 +25,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
     testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
 }
 
