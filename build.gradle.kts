@@ -3,11 +3,11 @@ plugins {
     `java-library`
     signing
     jacoco
-    kotlin("jvm") version "1.4.32"
+    kotlin("jvm") version "1.6.10"
 }
 
 group = "com.github.mckernant1"
-version = "0.0.7"
+version = "0.0.8"
 
 repositories {
     mavenCentral()
@@ -15,7 +15,9 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+    implementation("org.apache.commons:commons-lang3:3.12.0")
+    implementation("org.apache.commons:commons-collections4:4.4")
     testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
 }
 
