@@ -1,4 +1,4 @@
-package com.github.mckernant1.collections
+package com.github.mckernant1.extensions.collections
 
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll

@@ -1,5 +1,8 @@
 package com.github.mckernant1.collections
 
+import com.github.mckernant1.extensions.collections.cartesianProduct
+import com.github.mckernant1.extensions.collections.equals
+import com.github.mckernant1.extensions.collections.mapParallel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.*

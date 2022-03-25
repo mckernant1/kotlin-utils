@@ -1,4 +1,4 @@
-package com.github.mckernant1.time
+package com.github.mckernant1.extensions.time
 
 import org.apache.commons.lang3.time.DurationFormatUtils
 import java.time.Duration

@@ -1,4 +1,4 @@
-package com.github.mckernant1.math
+package com.github.mckernant1.extensions.math
 
 import kotlin.math.floor
 import kotlin.math.pow
