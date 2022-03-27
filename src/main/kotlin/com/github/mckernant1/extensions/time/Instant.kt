@@ -19,3 +19,8 @@ fun Instant.intervalsBetween(
     }
     return instants
 }
+
+
+fun Instant.isBeforeNow(): Boolean = this.isBefore(Instant.now())
+
+fun Instant.isAfterNow(): Boolean = this.isAfter(Instant.now())
