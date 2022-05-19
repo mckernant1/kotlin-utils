@@ -13,14 +13,17 @@ import javax.tools.Diagnostic
 
 
 @Target(AnnotationTarget.CONSTRUCTOR, AnnotationTarget.FUNCTION)
-@SupportedSourceVersion(SourceVersion.RELEASE_8)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class RequireEnvironmentVariable(vararg val envStrings: String)
 
 
 @AutoService(Processor::class)
-@SupportedAnnotationTypes("com.github.mckernant1.annotations.RequireEnv")
+@SupportedSourceVersion(SourceVersion.RELEASE_8)
 class RequireEnvProcessor : AbstractProcessor() {
+
+    override fun getSupportedAnnotationTypes(): MutableSet<String> =
+        mutableSetOf(RequireEnvironmentVariable::class.java.name)
+
     override fun process(annotations: MutableSet<out TypeElement>, roundEnv: RoundEnvironment): Boolean {
         roundEnv.getElementsAnnotatedWith(RequireEnvironmentVariable::class.java).forEach {
             val envsToCheck = it.getAnnotation(RequireEnvironmentVariable::class.java).envStrings.toList()
