@@ -17,12 +17,13 @@ import javax.tools.Diagnostic
 annotation class RequireEnvironmentVariable(vararg val envStrings: String)
 
 
-@AutoService(Processor::class)
-@SupportedSourceVersion(SourceVersion.RELEASE_8)
+@AutoService(RequireEnvironmentVariable::class)
 class RequireEnvProcessor : AbstractProcessor() {
 
-    override fun getSupportedAnnotationTypes(): MutableSet<String> =
-        mutableSetOf(RequireEnvironmentVariable::class.java.name)
+    override fun getSupportedAnnotationTypes(): Set<String> =
+        setOf(RequireEnvironmentVariable::class.java.canonicalName)
+
+    override fun getSupportedSourceVersion(): SourceVersion = SourceVersion.RELEASE_8
 
     override fun process(annotations: MutableSet<out TypeElement>, roundEnv: RoundEnvironment): Boolean {
         processingEnv.messager.printMessage(Diagnostic.Kind.WARNING, "Hit the annotation processor. There are ${roundEnv.getElementsAnnotatedWith(RequireEnvironmentVariable::class.java).size} things accositaed with this processor")
