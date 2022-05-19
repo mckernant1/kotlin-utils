@@ -25,9 +25,12 @@ class RequireEnvProcessor : AbstractProcessor() {
         mutableSetOf(RequireEnvironmentVariable::class.java.name)
 
     override fun process(annotations: MutableSet<out TypeElement>, roundEnv: RoundEnvironment): Boolean {
+        processingEnv.messager.printMessage(Diagnostic.Kind.WARNING, "Hit the annotation processor. There are ${roundEnv.getElementsAnnotatedWith(RequireEnvironmentVariable::class.java).size} things accositaed with this processor")
+
         roundEnv.getElementsAnnotatedWith(RequireEnvironmentVariable::class.java).forEach {
             val envsToCheck = it.getAnnotation(RequireEnvironmentVariable::class.java).envStrings.toList()
             val envsNotPresent = envsToCheck.except(System.getenv().keys)
+
             processingEnv.messager.printMessage(Diagnostic.Kind.ERROR, "$envsNotPresent are not present in environment")
             if (envsNotPresent.isNotEmpty()) error("$envsNotPresent are not present")
         }
