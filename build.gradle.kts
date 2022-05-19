@@ -2,12 +2,12 @@ plugins {
     `maven-publish`
     `java-library`
     signing
-    jacoco
-    kotlin("jvm") version "1.6.10"
+    kotlin("jvm") version "1.6.21"
+    kotlin("kapt") version "1.6.21"
 }
 
 group = "com.github.mckernant1"
-version = "0.0.14"
+version = "0.0.15"
 
 repositories {
     mavenCentral()
@@ -16,9 +16,18 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib"))
     implementation(kotlin("reflect"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
+
+    // Common
     implementation("org.apache.commons:commons-lang3:3.12.0")
     implementation("org.apache.commons:commons-collections4:4.4")
+
+    // Annotations
+    kapt("com.google.auto.service:auto-service:1.0.1")
+    implementation("com.google.auto.service:auto-service:1.0.1")
+    annotationProcessor("com.google.auto.service:auto-service:1.0.1")
+
+
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
 }
 

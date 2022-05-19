@@ -30,6 +30,9 @@ fun <T> Iterable<T>.intersect(other: Iterable<T>): List<T> {
     return this.filter { other.contains(it) }
 }
 
+/**
+ * Returns all the elements that are in this, but not in other
+ */
 fun <T> Iterable<T>.except(other: Iterable<T>): List<T> {
     return this.filter { !other.contains(it) }
 }
