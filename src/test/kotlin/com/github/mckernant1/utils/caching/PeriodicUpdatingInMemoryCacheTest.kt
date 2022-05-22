@@ -1,6 +1,6 @@
 package com.github.mckernant1.utils.caching
 
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.time.Duration
 
@@ -13,10 +13,7 @@ internal class PeriodicUpdatingInMemoryCacheTest {
             x += 1
             x
         }
-        val s = generateSequence {
-            cache.getValue()
-        }.take(10).toList()
-        assertTrue(s.distinct().size == 1)
+        assertEquals(1, cache.getValue())
     }
 
 }
