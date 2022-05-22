@@ -1,36 +1,31 @@
 package com.github.mckernant1.utils.caching
 
+import com.github.mckernant1.extensions.executor.scheduleAtFixedRate
 import java.time.Duration
+import java.util.concurrent.ScheduledFuture
 import java.util.concurrent.ScheduledThreadPoolExecutor
-import java.util.concurrent.TimeUnit
 
 class PeriodicUpdatingInMemoryCache<T>(
     period: Duration,
     threadPool: ScheduledThreadPoolExecutor = ScheduledThreadPoolExecutor(1),
-    val updateFunc: () -> T
+    private val updateFunc: () -> T
 ) {
 
-    @set:Synchronized
     @get:Synchronized
+    @set:Synchronized
     private var item: T? = null
 
-    init {
-        threadPool.scheduleAtFixedRate(
-            {
-            item = updateFunc()
-            },
-            0,
-            period.toMillis(),
-            TimeUnit.MILLISECONDS
-        )
+    private val future: ScheduledFuture<*> = threadPool.scheduleAtFixedRate(period) {
+        item = updateFunc()
     }
 
-    fun getValue(): T {
-        return if (item == null) {
-            updateFunc()
-        } else {
-            item!!
-        }
-    }
+    /**
+     * @return the item
+     */
+    fun getValue(): T = item ?: updateFunc()
 
+    /**
+     * See **[ScheduledFuture.cancel]**
+     */
+    fun cancel(mayInterruptIfRunning: Boolean = false): Boolean = future.cancel(mayInterruptIfRunning)
 }

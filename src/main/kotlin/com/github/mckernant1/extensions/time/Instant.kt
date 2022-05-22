@@ -6,7 +6,6 @@ import java.time.temporal.TemporalAmount
 
 fun Instant.elapsed(): Duration = Duration.between(this, Instant.now())
 
-
 fun Instant.intervalsBetween(
     end: Instant,
     interval: TemporalAmount
@@ -19,7 +18,6 @@ fun Instant.intervalsBetween(
     }
     return instants
 }
-
 
 fun Instant.isBeforeNow(): Boolean = this.isBefore(Instant.now())
 

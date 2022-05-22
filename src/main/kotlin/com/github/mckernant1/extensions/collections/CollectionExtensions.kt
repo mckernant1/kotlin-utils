@@ -17,24 +17,27 @@ fun <T> Iterable<T>?.equals(other: Iterable<T>?, preserveOrder: Boolean = true):
     when {
         other == null || this == null -> this == null && other == null
         preserveOrder -> this == other
-        else -> this.fold(true) { acc: Boolean, t: T ->
-            acc && other.any { it == t }
-        }
+        else -> this.toSet() == other.toSet()
     }
 
 fun <T, R> Iterable<T>.mapParallel(transform: suspend (T) -> R): List<R> = runBlocking {
     return@runBlocking map { async { transform(it) } }.awaitAll()
 }
 
+/**
+ * Returns all the elements in this and other
+ */
 fun <T> Iterable<T>.intersect(other: Iterable<T>): List<T> {
-    return this.filter { other.contains(it) }
+    val otherSet = other.toHashSet()
+    return this.filter { otherSet.contains(it) }
 }
 
 /**
  * Returns all the elements that are in this, but not in other
  */
 fun <T> Iterable<T>.except(other: Iterable<T>): List<T> {
-    return this.filter { !other.contains(it) }
+    val otherSet = other.toHashSet()
+    return this.filter { !otherSet.contains(it) }
 }
 
 fun <T, K> Iterable<T>.intersectBy(other: Iterable<T>, selector: (T) -> K): List<T> {

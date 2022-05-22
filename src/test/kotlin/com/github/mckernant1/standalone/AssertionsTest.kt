@@ -5,12 +5,12 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-internal class AssertionsKtTest {
+internal class AssertionsTest {
 
     @Test
     fun validateEnvironmentVariablesTest() {
         val x = assertThrows<IllegalStateException> {
-            validateEnvironmentVariablesExist(
+            assertEnvironmentVariablesExist(
                 "BOT_TOKEN",
                 "API_KEY"
             )

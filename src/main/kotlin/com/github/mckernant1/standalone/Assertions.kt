@@ -1,7 +1,7 @@
 package com.github.mckernant1.standalone
 
 @Throws(IllegalStateException::class)
-fun validateEnvironmentVariablesExist(vararg variables: String) {
+fun assertEnvironmentVariablesExist(vararg variables: String) {
     val unSet = variables.asSequence()
         .map { it to (System.getenv(it) ?: null) }
         .filter { (_, value) -> value == null }
