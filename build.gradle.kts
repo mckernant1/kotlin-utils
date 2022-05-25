@@ -3,6 +3,7 @@ plugins {
     `java-library`
     signing
     kotlin("jvm") version "1.6.21"
+    id("org.jetbrains.kotlinx.kover") version "0.5.0"
 }
 
 group = "com.github.mckernant1"
@@ -37,6 +38,11 @@ tasks {
 
 tasks.test {
     useJUnitPlatform()
+    extensions.configure(kotlinx.kover.api.KoverTaskExtension::class) {
+        isDisabled = false
+        binaryReportFile.set(file("$buildDir/custom/result.bin"))
+        includes = listOf("com.github.mckernant1.*")
+    }
 }
 
 
