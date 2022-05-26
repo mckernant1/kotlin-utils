@@ -1,5 +1,7 @@
-package com.github.mckernant1.utils.lazy
+package com.github.mckernant1.lazy
 
+import com.github.mckernant1.lazy.resettableLazy
+import com.github.mckernant1.lazy.resettableManager
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 

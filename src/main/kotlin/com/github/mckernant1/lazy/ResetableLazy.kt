@@ -1,4 +1,4 @@
-package com.github.mckernant1.utils.lazy
+package com.github.mckernant1.lazy
 
 import java.util.LinkedList
 import kotlin.reflect.KProperty

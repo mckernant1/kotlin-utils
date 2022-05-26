@@ -1,4 +1,4 @@
-package com.github.mckernant1.utils.caching
+package com.github.mckernant1.caching
 
 import com.github.mckernant1.extensions.executor.scheduleAtFixedRate
 import java.time.Duration

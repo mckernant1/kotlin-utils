@@ -9,7 +9,7 @@ import java.time.Instant
  *
  * @return the duration
  */
-fun measureDuration(f: () -> Unit): Duration {
+inline fun measureDuration(f: () -> Unit): Duration {
     val start = Instant.now()
     f()
     return start.elapsed()
@@ -20,7 +20,7 @@ fun measureDuration(f: () -> Unit): Duration {
  *
  * @return The timed operation containing the duration and result
  */
-fun <T> measureDuration(f: () -> T): TimedOperation<T> {
+inline fun <T> measureOperation(f: () -> T): TimedOperation<T> {
     val start = Instant.now()
     val result = f()
     val elapsed = start.elapsed()

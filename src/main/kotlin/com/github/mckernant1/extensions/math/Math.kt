@@ -1,7 +1,6 @@
 package com.github.mckernant1.extensions.math
 
 import kotlin.math.floor
-import kotlin.math.pow
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.DecimalFormat

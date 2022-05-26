@@ -1,4 +1,4 @@
-package com.github.mckernant1.utils.caching
+package com.github.mckernant1.caching
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
