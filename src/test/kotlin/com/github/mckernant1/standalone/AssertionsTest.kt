@@ -21,7 +21,7 @@ internal class AssertionsTest {
         assertTrue(x.message?.contains("BOT_TOKEN").falseIfNull())
         assertTrue(x.message?.contains("API_KEY").falseIfNull())
 
-        assertEnvironmentVariablesExist("USER")
+        assertEnvironmentVariablesExist("PWD")
     }
 
     @Test
