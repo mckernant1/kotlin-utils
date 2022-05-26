@@ -43,7 +43,7 @@ object Assertions {
     @Throws(AssertionException::class)
     fun <T> assertEquals(left: T, right: T) {
         if (left != right) {
-            throw AssertionException("left: $left did not match right $right")
+            throw AssertionException("left: '$left' did not match right: '$right'")
         }
     }
 
@@ -53,25 +53,26 @@ object Assertions {
     @Throws(AssertionException::class)
     fun <T> assertNotEquals(left: T, right: T) {
         if (left == right) {
-            throw AssertionException("left: $left matched right: $right")
+            throw AssertionException("left: '$left' matched right: '$right'")
         }
     }
 
     /**
-     * If the function throws an exception of the
+     * If the function throws an exception is not thrown or does not match the input type
      */
     @Throws(AssertionException::class)
     inline fun <reified T> assertThrows(f: () -> Unit)
             where T : Throwable {
-        var x: Exception? = null
-        try {
+
+        val throwable: Throwable? = try {
             f()
         } catch (e: Exception) {
-            x = e
-        }
-        when (x) {
+            e
+        } as? Throwable
+
+        when (throwable) {
             null -> throw AssertionException("Expected ${T::class.simpleName} but no exception was thrown")
-            !is T -> throw AssertionException("Exception ${x::class.simpleName} is not of expected type ${T::class.simpleName}")
+            !is T -> throw AssertionException("Exception ${throwable::class.simpleName} is not of expected type ${T::class.simpleName}")
         }
     }
 }
