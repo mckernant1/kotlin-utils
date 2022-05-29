@@ -1,6 +1,7 @@
 package com.github.mckernant1.caching
 
 import com.github.mckernant1.extensions.executor.scheduleAtFixedRate
+import kotlin.reflect.KProperty
 import java.time.Duration
 import java.util.concurrent.ScheduledFuture
 import java.util.concurrent.ScheduledThreadPoolExecutor
@@ -13,16 +14,15 @@ class PeriodicUpdatingInMemoryCache<T>(
 
     @get:Synchronized
     @set:Synchronized
-    private var item: T? = null
+    @Volatile
+    private var internalItem: T? = null
 
     private val future: ScheduledFuture<*> = threadPool.scheduleAtFixedRate(period) {
-        item = updateFunc()
+        internalItem = updateFunc()
     }
 
-    /**
-     * @return the item
-     */
-    fun getValue(): T = item ?: updateFunc()
+    val item: T
+        get() = internalItem ?: updateFunc()
 
     /**
      * See **[ScheduledFuture.cancel]**

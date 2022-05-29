@@ -13,7 +13,7 @@ internal class PeriodicUpdatingInMemoryCacheTest {
             x += 1
             x
         }
-        assertEquals(1, cache.getValue())
+        assertEquals(1, cache.item)
     }
 
 }

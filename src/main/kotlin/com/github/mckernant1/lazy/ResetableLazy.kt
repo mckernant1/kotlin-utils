@@ -11,7 +11,7 @@ import kotlin.reflect.KProperty
 
 class ResettableLazyManager {
     // we synchronize to make sure the timing of a reset() call and new inits do not collide
-    val managedDelegates = LinkedList<Resettable>()
+    private val managedDelegates = LinkedList<Resettable>()
 
     fun register(managed: Resettable) {
         synchronized(managedDelegates) {
@@ -31,9 +31,12 @@ interface Resettable {
     fun reset()
 }
 
-class ResettableLazy<T>(val manager: ResettableLazyManager, val init: () -> T) : Resettable {
+class ResettableLazy<T>(
+    private val manager: ResettableLazyManager,
+    private val init: () -> T
+) : Resettable {
     @Volatile
-    var lazyHolder = makeInitBlock()
+    private var lazyHolder = makeInitBlock()
 
     operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
         return lazyHolder.value
@@ -43,7 +46,7 @@ class ResettableLazy<T>(val manager: ResettableLazyManager, val init: () -> T) :
         lazyHolder = makeInitBlock()
     }
 
-    fun makeInitBlock(): Lazy<T> {
+    private fun makeInitBlock(): Lazy<T> {
         return lazy {
             manager.register(this)
             init()
