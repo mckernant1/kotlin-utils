@@ -10,13 +10,13 @@ internal class MathTest {
     @Test
     fun intPow() {
         val i: Int = 2
-        assertEquals(4, i.pow(2))
+        assertEquals(4.0, i.pow(2))
     }
 
     @Test
     fun longPow() {
         val i: Long = 2
-        assertEquals(4, i.pow(2))
+        assertEquals(4.0, i.pow(2))
     }
 
     @Test

@@ -1,8 +1,6 @@
 package com.github.mckernant1.extensions.collections
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
 
@@ -14,15 +12,6 @@ internal class CollectionExtensionsTest {
         val l2 = listOf("a", "b")
         assertEquals(l1.cartesianProduct(l2), listOf(Pair(1, "a"), Pair(1, "b"), Pair(2, "a"), Pair(2, "b")))
     }
-
-    @Test
-    fun equalsPreserveOrder() {
-        val l1 = listOf(1, 2)
-        val l2 = listOf(2, 1)
-        assertTrue(l1.equals(l2, preserveOrder = false))
-        assertFalse(l1.equals(l2, preserveOrder = true))
-    }
-
 
     @Test
     fun intersect() {
