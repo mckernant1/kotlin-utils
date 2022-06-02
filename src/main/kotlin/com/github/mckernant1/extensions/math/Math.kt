@@ -1,7 +1,9 @@
 package com.github.mckernant1.extensions.math
 
+import com.google.common.math.Quantiles
 import kotlin.math.floor
 import kotlin.math.pow
+import org.apache.commons.math3.stat.descriptive.rank.Percentile
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -16,6 +18,15 @@ fun Double.isInt(): Boolean = floor(this) == this
 
 fun Double.format(pattern: String = "0.00"): String =
     DecimalFormat(pattern).format(this)
+
+/**
+ * Percentiles of a list. Maybe a bit off due to double precision
+ * Can also be used for quantiles by using a decimal value
+ */
+fun <I, E> Iterable<E>.percentile(p: I): Double
+        where E : Number,
+              I : Number = Percentile(p.toDouble()).evaluate(this.map { it.toDouble() }.toDoubleArray())
+
 
 /**
  * @return The greatest common factor between the two values

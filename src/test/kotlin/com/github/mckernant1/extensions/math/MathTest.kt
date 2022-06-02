@@ -1,5 +1,6 @@
 package com.github.mckernant1.extensions.math
 
+import com.google.common.math.Quantiles
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -38,5 +39,10 @@ internal class MathTest {
     fun lcm() {
         assertEquals((10).leastCommonMultiple(25), 50)
         assertEquals((7).leastCommonMultiple(3), 21)
+    }
+
+    @Test
+    fun percentiles() {
+        assertEquals(95.0, (1 until 100).percentile(95))
     }
 }
