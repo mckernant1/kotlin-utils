@@ -1,6 +1,5 @@
 package com.github.mckernant1.extensions.math
 
-import com.google.common.math.Quantiles
 import kotlin.math.floor
 import kotlin.math.pow
 import org.apache.commons.math3.stat.descriptive.rank.Percentile

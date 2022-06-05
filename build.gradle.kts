@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.github.mckernant1"
-version = "0.0.29"
+version = "0.0.30"
 
 repositories {
     mavenCentral()

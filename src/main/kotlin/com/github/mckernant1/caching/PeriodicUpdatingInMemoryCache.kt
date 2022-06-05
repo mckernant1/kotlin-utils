@@ -1,7 +1,6 @@
 package com.github.mckernant1.caching
 
 import com.github.mckernant1.extensions.executor.scheduleAtFixedRate
-import kotlin.reflect.KProperty
 import java.time.Duration
 import java.util.concurrent.ScheduledFuture
 import java.util.concurrent.ScheduledThreadPoolExecutor
