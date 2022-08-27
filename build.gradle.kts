@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.github.mckernant1"
-version = "0.0.30"
+version = "0.0.31"
 
 repositories {
     mavenCentral()
@@ -17,7 +17,7 @@ dependencies {
     // Kotlin
     implementation(kotlin("stdlib"))
     implementation(kotlin("reflect"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
     // Common
     implementation("org.apache.commons:commons-lang3:3.12.0")
@@ -26,7 +26,7 @@ dependencies {
     implementation("com.google.guava:guava:31.1-jre")
 
     // Testing
-    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.0")
 }
 
 tasks {
