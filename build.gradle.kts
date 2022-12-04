@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.github.mckernant1"
-version = "0.0.33"
+version = "0.0.34"
 
 repositories {
     mavenCentral()
@@ -28,6 +28,7 @@ dependencies {
     implementation("org.apache.commons:commons-math3:3.6.1")
     implementation("com.google.code.gson:gson:2.10")
     implementation("com.google.guava:guava:31.1-jre")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.14.1")
 
     // Testing
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.0")

@@ -1,5 +1,10 @@
 package com.github.mckernant1.extensions.collections
 
+import com.github.mckernant1.extensions.collections.SetTheory.cartesianProduct
+import com.github.mckernant1.extensions.collections.SetTheory.except
+import com.github.mckernant1.extensions.collections.SetTheory.exceptBy
+import com.github.mckernant1.extensions.collections.SetTheory.intersect
+import com.github.mckernant1.extensions.collections.SetTheory.intersectBy
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 

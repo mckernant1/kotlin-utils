@@ -1,6 +1,6 @@
 package com.github.mckernant1.standalone
 
-import com.github.mckernant1.extensions.time.elapsed
+import com.github.mckernant1.extensions.time.InstantUtils.elapsed
 import java.time.Duration
 import java.time.Instant
 

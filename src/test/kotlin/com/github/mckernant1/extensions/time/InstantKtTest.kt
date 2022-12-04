@@ -1,7 +1,8 @@
 package com.github.mckernant1.extensions.time
 
+import com.github.mckernant1.extensions.time.InstantUtils.intervalsBetween
+import com.github.mckernant1.extensions.time.InstantUtils.timeUntilNextWhole
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import java.time.Duration
 import java.time.Instant

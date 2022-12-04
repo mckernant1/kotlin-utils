@@ -1,6 +1,6 @@
 package com.github.mckernant1.caching
 
-import com.github.mckernant1.extensions.executor.scheduleAtFixedRate
+import com.github.mckernant1.extensions.executor.Executors.scheduleAtFixedRate
 import java.time.Duration
 import java.util.concurrent.ScheduledFuture
 import java.util.concurrent.ScheduledThreadPoolExecutor

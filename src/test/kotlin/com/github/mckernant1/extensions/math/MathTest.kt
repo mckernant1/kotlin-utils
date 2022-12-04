@@ -1,6 +1,12 @@
 package com.github.mckernant1.extensions.math
 
-import com.google.common.math.Quantiles
+import com.github.mckernant1.extensions.math.DoubleAlgebra.isInt
+import com.github.mckernant1.extensions.math.DoubleAlgebra.pow
+import com.github.mckernant1.extensions.math.IntAlgebra.greatestCommonFactor
+import com.github.mckernant1.extensions.math.IntAlgebra.leastCommonMultiple
+import com.github.mckernant1.extensions.math.IntAlgebra.pow
+import com.github.mckernant1.extensions.math.LongAlgebra.pow
+import com.github.mckernant1.extensions.math.Percentiles.percentile
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -11,13 +17,19 @@ internal class MathTest {
     @Test
     fun intPow() {
         val i: Int = 2
-        assertEquals(4.0, i.pow(2))
+        assertEquals(4.0, i.pow(2).toDouble())
     }
 
     @Test
     fun longPow() {
         val i: Long = 2
-        assertEquals(4.0, i.pow(2))
+        assertEquals(4.0, i.pow(2).toDouble())
+    }
+
+    @Test
+    fun doublePow() {
+        val i: Double = 2.0
+        assertEquals(4.0, i.pow(2).toDouble())
     }
 
     @Test
