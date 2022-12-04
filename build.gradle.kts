@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.github.mckernant1"
-version = "0.0.32"
+version = "0.0.33"
 
 repositories {
     mavenCentral()
@@ -19,10 +19,14 @@ dependencies {
     implementation(kotlin("reflect"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
+    // Logging
+    implementation("org.slf4j:slf4j-api:2.0.5")
+
     // Common
     implementation("org.apache.commons:commons-lang3:3.12.0")
     implementation("org.apache.commons:commons-collections4:4.4")
     implementation("org.apache.commons:commons-math3:3.6.1")
+    implementation("com.google.code.gson:gson:2.10")
     implementation("com.google.guava:guava:31.1-jre")
 
     // Testing

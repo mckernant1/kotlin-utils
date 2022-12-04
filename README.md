@@ -1,5 +1,5 @@
 # Kotlin Utils
-Hello this is my kotlin utils library where I put functions that I find useful
+Hello! This is my kotlin utils library where I put functions that I find useful
 
 
 ### Use will gradle
@@ -14,7 +14,7 @@ repositories {
 
 ```
 dependencies {
-    implementation("com.github.mckernant1:kotlin-utils:0.0.23")
+    implementation("com.github.mckernant1:kotlin-utils:0.0.33")
 }
 ```
 
