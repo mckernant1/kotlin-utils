@@ -1,9 +1,6 @@
 package com.github.mckernant1.extensions.collections
 
 
-
-
-
 object SetTheory {
     /**
      * Returns the cartesianProduct of 2 lists
