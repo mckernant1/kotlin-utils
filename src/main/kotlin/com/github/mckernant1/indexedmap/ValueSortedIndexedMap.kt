@@ -1,5 +1,8 @@
 package com.github.mckernant1.indexedmap
 
+import com.github.mckernant1.extensions.collections.SortedMaps.firstEntry
+import com.github.mckernant1.extensions.collections.SortedMaps.lastEntry
+import com.github.mckernant1.extensions.tuple.Pair.toEntry
 import com.google.common.annotations.VisibleForTesting
 import kotlin.concurrent.withLock
 import java.util.Collections
@@ -88,15 +91,19 @@ class ValueSortedIndexedMap<K, V> : MutableMap<K, V> where V : Comparable<V> {
 
     override fun containsKey(key: K): Boolean = baseMap.containsKey(key)
 
-    fun minValue(): Map.Entry<K, V>? = if (isEmpty()) {
-        null
+    fun minValue(): Map.Entry<K, V>? = if (index.isNotEmpty()) {
+        index.firstEntry().let {
+            it.value!!.first() to it.key
+        }.toEntry()
     } else {
-        IndexedEntry(index[index.firstKey()]!!.first(), index.firstKey())
+        null
     }
 
-    fun maxValue(): Map.Entry<K, V>? = if (isEmpty()) {
-        null
+    fun maxValue(): Map.Entry<K, V>? = if (index.isNotEmpty()) {
+        index.lastEntry().let {
+            it.value!!.first() to it.key
+        }.toEntry()
     } else {
-        IndexedEntry(index[index.lastKey()]!!.first(), index.lastKey())
+        null
     }
 }
