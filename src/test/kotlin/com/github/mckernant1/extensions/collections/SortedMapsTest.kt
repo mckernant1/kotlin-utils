@@ -4,7 +4,7 @@ import com.github.mckernant1.extensions.collections.SortedMaps.firstEntryOrNull
 import com.github.mckernant1.extensions.collections.SortedMaps.firstKeyOrNull
 import com.github.mckernant1.extensions.collections.SortedMaps.lastEntryOrNull
 import com.github.mckernant1.extensions.collections.SortedMaps.lastKeyOrNull
-import com.github.mckernant1.extensions.tuple.Pair.toEntry
+import com.github.mckernant1.extensions.tuple.Pairs.toEntry
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test

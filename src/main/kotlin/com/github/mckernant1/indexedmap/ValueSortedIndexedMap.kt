@@ -2,7 +2,7 @@ package com.github.mckernant1.indexedmap
 
 import com.github.mckernant1.extensions.collections.SortedMaps.firstEntry
 import com.github.mckernant1.extensions.collections.SortedMaps.lastEntry
-import com.github.mckernant1.extensions.tuple.Pair.toEntry
+import com.github.mckernant1.extensions.tuple.Pairs.toEntry
 import com.google.common.annotations.VisibleForTesting
 import kotlin.concurrent.withLock
 import java.util.Collections
