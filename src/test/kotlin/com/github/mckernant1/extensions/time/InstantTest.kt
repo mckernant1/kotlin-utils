@@ -1,15 +1,16 @@
 package com.github.mckernant1.extensions.time
 
-import com.github.mckernant1.extensions.time.InstantUtils.intervalsBetween
-import com.github.mckernant1.extensions.time.InstantUtils.timeUntilNextWhole
+import com.github.mckernant1.extensions.time.Instants.intervalsBetween
+import com.github.mckernant1.extensions.time.Instants.timeSince
+import com.github.mckernant1.extensions.time.Instants.timeUntil
+import com.github.mckernant1.extensions.time.Instants.timeUntilNextWhole
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.time.Duration
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 
-internal class InstantKtTest {
-
+internal class InstantTest {
 
     @Test
     fun testIntervalsBetween() {
@@ -34,6 +35,28 @@ internal class InstantKtTest {
             Duration.ofSeconds(2066).toMillis(),
             Instant.ofEpochSecond(1662852334).timeUntilNextWhole(ChronoUnit.HOURS).toMillis()
         )
+    }
+
+    @Test
+    fun timeUntil() {
+        val now = Instant.now()
+
+        assertEquals(
+            Duration.ofSeconds(30),
+            now.timeUntil(now + Duration.ofSeconds(30))
+        )
+
+    }
+
+    @Test
+    fun timeSince() {
+        val now = Instant.now()
+
+        assertEquals(
+            Duration.ofSeconds(30),
+            now.timeSince(now - Duration.ofSeconds(30))
+        )
+
     }
 
 }
