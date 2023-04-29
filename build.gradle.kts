@@ -2,12 +2,12 @@ plugins {
     `maven-publish`
     `java-library`
     signing
-    kotlin("jvm") version "1.6.21"
+    kotlin("jvm") version "1.8.21"
     id("org.jetbrains.kotlinx.kover") version "0.5.0"
 }
 
 group = "com.mckernant1.commons"
-version = "0.1.0"
+version = "0.2.0"
 
 repositories {
     mavenCentral()
@@ -36,10 +36,10 @@ dependencies {
 
 tasks {
     compileKotlin {
-        kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.jvmTarget = "17"
     }
     compileTestKotlin {
-        kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.jvmTarget = "17"
     }
 }
 
@@ -48,7 +48,7 @@ tasks.test {
     extensions.configure(kotlinx.kover.api.KoverTaskExtension::class) {
         isDisabled = false
         binaryReportFile.set(file("$buildDir/custom/result.bin"))
-        includes = listOf("com.github.mckernant1.*")
+        includes = listOf("com.mckernant1.commons.*")
     }
 }
 
