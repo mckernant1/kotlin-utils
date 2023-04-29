@@ -6,7 +6,7 @@ plugins {
     id("org.jetbrains.kotlinx.kover") version "0.5.0"
 }
 
-group = "com.github.mckernant1"
+group = "com.mckernant1.commons"
 version = "0.1.0"
 
 repositories {
