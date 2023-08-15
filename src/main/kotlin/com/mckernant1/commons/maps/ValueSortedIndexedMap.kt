@@ -53,6 +53,7 @@ class ValueSortedIndexedMap<K, V> : MutableMap<K, V> where V : Comparable<V> {
 
 
     override fun isEmpty(): Boolean = baseMap.isEmpty()
+
     override fun remove(key: K): V? {
         return lock.withLock {
             val v = baseMap.remove(key) ?: return null

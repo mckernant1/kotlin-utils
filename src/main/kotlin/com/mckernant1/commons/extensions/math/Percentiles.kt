@@ -9,5 +9,6 @@ object Percentiles {
      */
     fun <I, E> Iterable<E>.percentile(p: I): Double
             where E : Number,
-                  I : Number = Percentile(p.toDouble()).evaluate(this.map { it.toDouble() }.toDoubleArray())
+                  I : Number = Percentile(p.toDouble())
+                      .evaluate(this.map { it.toDouble() }.toDoubleArray())
 }

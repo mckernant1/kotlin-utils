@@ -2,12 +2,13 @@ package com.mckernant1.commons.caching
 
 import com.mckernant1.commons.extensions.executor.Executors.scheduleAtFixedRate
 import java.time.Duration
+import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.ScheduledFuture
 import java.util.concurrent.ScheduledThreadPoolExecutor
 
 class PeriodicUpdatingInMemoryCache<T>(
     period: Duration,
-    threadPool: ScheduledThreadPoolExecutor = ScheduledThreadPoolExecutor(1),
+    threadPool: ScheduledExecutorService = ScheduledThreadPoolExecutor(1),
     private val updateFunc: () -> T
 ) {
 
@@ -24,7 +25,7 @@ class PeriodicUpdatingInMemoryCache<T>(
         get() = internalItem ?: updateFunc()
 
     /**
-     * See **[ScheduledFuture.cancel]**
+     * @see [ScheduledFuture.cancel]
      */
     fun cancel(mayInterruptIfRunning: Boolean = false): Boolean = future.cancel(mayInterruptIfRunning)
 }
