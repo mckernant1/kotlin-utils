@@ -6,8 +6,8 @@ plugins {
     id("org.jetbrains.kotlinx.kover") version "0.5.0"
 }
 
-group = "com.mckernant1.commons"
-version = "0.2.3"
+group = "com.mckernant1"
+version = "0.2.4"
 
 repositories {
     mavenCentral()
@@ -15,9 +15,9 @@ repositories {
 
 dependencies {
     // Kotlin
-    implementation(kotlin("stdlib"))
-    implementation(kotlin("reflect"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.10")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.10")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
 
     // Logging
     implementation("org.slf4j:slf4j-api:2.0.5")
@@ -26,12 +26,12 @@ dependencies {
     implementation("org.apache.commons:commons-lang3:3.12.0")
     implementation("org.apache.commons:commons-collections4:4.4")
     implementation("org.apache.commons:commons-math3:3.6.1")
-    implementation("com.google.code.gson:gson:2.10")
-    implementation("com.google.guava:guava:31.1-jre")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.14.1")
+    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.google.guava:guava:32.1.2-jre")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.1")
 
     // Testing
-    testImplementation("org.junit.jupiter:junit-jupiter:5.9.0")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
 }
 
 tasks {
@@ -48,7 +48,7 @@ tasks.test {
     extensions.configure(kotlinx.kover.api.KoverTaskExtension::class) {
         isDisabled = false
         binaryReportFile.set(file("$buildDir/custom/result.bin"))
-        includes = listOf("com.mckernant1.commons.*")
+        includes = listOf("com.mckernant1.*")
     }
 }
 

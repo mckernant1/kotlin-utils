@@ -12,6 +12,12 @@ object SetTheory {
     /**
      * Returns all the elements in this and other
      */
+    @Deprecated(
+        "Use Std library intersect instead",
+        ReplaceWith(
+            "this.intersect(other)"
+        )
+    )
     fun <T> Iterable<T>.intersect(other: Iterable<T>): List<T> {
         val otherSet = other.toHashSet()
         return this.filter { otherSet.contains(it) }
