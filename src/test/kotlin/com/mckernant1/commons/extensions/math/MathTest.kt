@@ -2,6 +2,7 @@ package com.mckernant1.commons.extensions.math
 
 import com.mckernant1.commons.extensions.math.DoubleAlgebra.isInt
 import com.mckernant1.commons.extensions.math.DoubleAlgebra.pow
+import com.mckernant1.commons.extensions.math.DoubleAlgebra.round
 import com.mckernant1.commons.extensions.math.IntAlgebra.greatestCommonFactor
 import com.mckernant1.commons.extensions.math.IntAlgebra.leastCommonMultiple
 import com.mckernant1.commons.extensions.math.IntAlgebra.pow
@@ -56,5 +57,12 @@ internal class MathTest {
     @Test
     fun percentiles() {
         assertEquals(95.0, (1 until 100).percentile(95))
+    }
+
+    @Test
+    fun rounding() {
+        assertEquals(4.5, (4.55).round(2))
+        assertEquals(4.5, (4.54).round(2))
+        assertEquals(460.0, (456.0).round(2))
     }
 }
