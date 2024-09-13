@@ -1,9 +1,11 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     `maven-publish`
     `java-library`
     signing
-    kotlin("jvm") version "1.8.21"
-    id("org.jetbrains.kotlinx.kover") version "0.5.0"
+    kotlin("jvm") version "2.0.20"
+    id("org.jetbrains.kotlinx.kover") version "0.8.3"
 }
 
 group = "com.mckernant1"
@@ -15,43 +17,50 @@ repositories {
 
 dependencies {
     // Kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.10")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.10")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.0.0")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:2.0.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
 
     // Logging
-    implementation("org.slf4j:slf4j-api:2.0.5")
+    implementation("org.slf4j:slf4j-api:2.0.12")
 
     // Common
-    implementation("org.apache.commons:commons-lang3:3.12.0")
+    implementation("org.apache.commons:commons-lang3:3.15.0")
     implementation("org.apache.commons:commons-collections4:4.4")
-    implementation("org.apache.commons:commons-math3:3.6.1")
-    implementation("com.google.code.gson:gson:2.10.1")
-    implementation("com.google.guava:guava:32.1.2-jre")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.1")
+    implementation("org.apache.commons:commons-math3:3.6")
+    implementation("com.google.code.gson:gson:2.10")
+    implementation("com.google.guava:guava:33.2.1-jre")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.17.0")
 
     // Testing
-    testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.3")
 }
 
-tasks {
-    compileKotlin {
-        kotlinOptions.jvmTarget = "17"
-    }
-    compileTestKotlin {
-        kotlinOptions.jvmTarget = "17"
+kotlin {
+    compilerOptions {
+        apiVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_0)
+        jvmTarget.set(JvmTarget.JVM_17)
     }
 }
 
 tasks.test {
     useJUnitPlatform()
-    extensions.configure(kotlinx.kover.api.KoverTaskExtension::class) {
-        isDisabled = false
-        binaryReportFile.set(file("$buildDir/custom/result.bin"))
-        includes = listOf("com.mckernant1.*")
+}
+
+kover {
+    reports {
+        filters {
+            includes {
+                packages("com.mckernant1.*")
+            }
+        }
     }
 }
 
+tasks["koverHtmlReport"].dependsOn(tasks.test)
+tasks.build {
+    dependsOn("koverHtmlReport")
+}
 
 publishing {
     repositories {
