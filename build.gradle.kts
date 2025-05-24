@@ -34,6 +34,7 @@ dependencies {
 
     // Testing
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.3")
+    testImplementation("org.jetbrains.kotlinx:lincheck:2.39")
 }
 
 kotlin {

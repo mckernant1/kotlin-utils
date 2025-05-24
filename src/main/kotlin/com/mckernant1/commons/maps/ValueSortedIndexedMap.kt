@@ -1,15 +1,15 @@
 package com.mckernant1.commons.maps
 
-import com.mckernant1.commons.extensions.collections.SortedMaps.firstEntry
-import com.mckernant1.commons.extensions.collections.SortedMaps.lastEntry
-import com.mckernant1.commons.extensions.tuple.Pairs.toEntry
 import com.google.common.annotations.VisibleForTesting
-import kotlin.concurrent.withLock
+import com.mckernant1.commons.extensions.collections.SortedMaps.firstEntryOrNull
+import com.mckernant1.commons.extensions.collections.SortedMaps.lastEntryOrNull
+import com.mckernant1.commons.extensions.tuple.Pairs.toEntry
 import java.util.Collections
 import java.util.SortedMap
 import java.util.TreeMap
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.locks.ReentrantLock
+import kotlin.concurrent.withLock
 
 /**
  * A map that has a sorted index based on the value attached to it.
@@ -92,19 +92,17 @@ class ValueSortedIndexedMap<K, V> : MutableMap<K, V> where V : Comparable<V> {
 
     override fun containsKey(key: K): Boolean = baseMap.containsKey(key)
 
-    fun minValue(): Map.Entry<K, V>? = if (index.isNotEmpty()) {
-        index.firstEntry().let {
+    fun minValue(): Map.Entry<K, V>? = lock.withLock {
+        index.firstEntryOrNull()?.let {
             it.value!!.first() to it.key
-        }.toEntry()
-    } else {
-        null
+        }?.toEntry()
     }
 
-    fun maxValue(): Map.Entry<K, V>? = if (index.isNotEmpty()) {
-        index.lastEntry().let {
+
+    fun maxValue(): Map.Entry<K, V>? = lock.withLock {
+        index.lastEntryOrNull()?.let {
             it.value!!.first() to it.key
-        }.toEntry()
-    } else {
-        null
+        }?.toEntry()
     }
+
 }
