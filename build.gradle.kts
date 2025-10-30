@@ -4,7 +4,7 @@ plugins {
     `maven-publish`
     `java-library`
     signing
-    kotlin("jvm") version "2.0.20"
+    kotlin("jvm") version "2.2.21"
     id("org.jetbrains.kotlinx.kover") version "0.8.3"
 }
 
