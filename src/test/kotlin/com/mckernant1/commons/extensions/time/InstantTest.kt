@@ -16,7 +16,10 @@ internal class InstantTest {
     fun testIntervalsBetween() {
         val x = Instant.now()
         assertEquals(
-            x.intervalsBetween(x + Duration.ofHours(1), Duration.ofMinutes(10)),
+            x.intervalsBetween(
+                x + Duration.ofHours(1),
+                Duration.ofMinutes(10)
+            ),
             listOf(
                 x,
                 x + Duration.ofMinutes(10),

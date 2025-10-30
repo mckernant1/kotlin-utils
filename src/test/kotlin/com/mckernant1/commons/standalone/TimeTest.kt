@@ -1,8 +1,5 @@
 package com.mckernant1.commons.standalone
 
-import com.mckernant1.commons.standalone.TimedOperation
-import com.mckernant1.commons.standalone.measureDuration
-import com.mckernant1.commons.standalone.measureOperation
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
