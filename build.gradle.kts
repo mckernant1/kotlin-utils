@@ -25,8 +25,8 @@ repositories {
 
 dependencies {
     // Kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.0.0")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:2.0.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.2.21")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:2.2.21")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
 
     // Logging
