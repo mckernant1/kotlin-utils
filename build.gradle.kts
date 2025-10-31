@@ -10,7 +10,10 @@ plugins {
 }
 
 scmVersion {
-    versionIncrementer("incrementPatch") // automatically bump patch
+    versionIncrementer("incrementPatch")
+    tag {
+        prefix = ""
+    }
 }
 
 group = "com.mckernant1"
