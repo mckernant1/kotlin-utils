@@ -35,7 +35,7 @@ dependencies {
     // Common
     implementation("org.apache.commons:commons-lang3:3.18.0")
     implementation("org.apache.commons:commons-collections4:4.5.0")
-    implementation("org.apache.commons:commons-math3:3.6")
+    implementation("org.apache.commons:commons-math3:3.6.1")
     implementation("com.google.code.gson:gson:2.10")
     implementation("com.google.guava:guava:33.2.1-jre")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.17.0")
