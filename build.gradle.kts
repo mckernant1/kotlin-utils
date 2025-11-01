@@ -6,7 +6,7 @@ plugins {
     signing
     kotlin("jvm") version "2.2.21"
     id("org.jetbrains.kotlinx.kover") version "0.8.3"
-    id("pl.allegro.tech.build.axion-release") version "1.18.9"
+    id("pl.allegro.tech.build.axion-release") version "1.21.0"
 }
 
 scmVersion {
