@@ -86,7 +86,7 @@ publishing {
         create<MavenPublication>("default") {
             artifactId = "kotlin-utils"
             from(components["kotlin"])
-            val sourcesJar by tasks.creating(Jar::class) {
+            val sourcesJar by tasks.registering(Jar::class) {
                 val sourceSets: SourceSetContainer by project
                 from(sourceSets["main"].allSource)
                 archiveClassifier.set("sources")

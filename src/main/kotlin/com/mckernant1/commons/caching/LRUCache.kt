@@ -18,7 +18,4 @@ class LRUCache<K, V>(
         super.put(key, value)
     }
 
-    override val size: Int
-        get() = super.size
-
 }
