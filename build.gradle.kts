@@ -43,7 +43,8 @@ dependencies {
     // Testing
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.3")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    testImplementation("org.jetbrains.kotlinx:lincheck:2.39")
+    // https://mvnrepository.com/artifact/org.jetbrains.lincheck/lincheck
+    testImplementation("org.jetbrains.lincheck:lincheck:3.3.2")
 }
 
 kotlin {

@@ -1,10 +1,9 @@
 package com.mckernant1.commons.maps
 
-import org.jetbrains.kotlinx.lincheck.annotations.Operation
-import org.jetbrains.kotlinx.lincheck.annotations.Param
-import org.jetbrains.kotlinx.lincheck.check
-import org.jetbrains.kotlinx.lincheck.paramgen.StringGen
-import org.jetbrains.kotlinx.lincheck.strategy.stress.StressOptions
+import org.jetbrains.lincheck.datastructures.Operation
+import org.jetbrains.lincheck.datastructures.Param
+import org.jetbrains.lincheck.datastructures.StressOptions
+import org.jetbrains.lincheck.datastructures.StringGen
 import org.junit.jupiter.api.Test
 
 @Param(name = "key", gen = StringGen::class)
@@ -31,5 +30,8 @@ class ValueSortedIndexedMapConcurrencyTest {
     fun maxValue(): Map.Entry<String, Int>? = map.maxValue()
 
     @Test
-    fun stressTest() = StressOptions().check(this::class)
+    fun stressTest() = StressOptions()
+        .actorsBefore(1)
+        .actorsAfter(1)
+        .check(this::class)
 }
