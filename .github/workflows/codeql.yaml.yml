@@ -34,9 +34,10 @@ jobs:
         uses: github/codeql-action/init@v3
         with:
           languages: ${{ matrix.language }}
+          dependency-caching: true
 
-      - name: Build with Gradle
-        run: ./gradlew clean build -x test
+      - name: Build
+        uses: github/codeql-action/autobuild@v4
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
