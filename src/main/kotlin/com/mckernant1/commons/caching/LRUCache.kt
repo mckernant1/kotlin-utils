@@ -18,4 +18,9 @@ class LRUCache<K, V>(
         super.put(key, value)
     }
 
+    override fun clone(): Any {
+        val n = LRUCache<K, V>(maxSize)
+        n.putAll(this)
+        return n
+    }
 }
