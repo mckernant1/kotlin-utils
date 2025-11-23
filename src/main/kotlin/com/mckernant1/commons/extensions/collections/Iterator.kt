@@ -5,7 +5,7 @@ object Iterator {
     /**
      * Cycles through an iterable indefinitely
      */
-    fun <T> Iterable<T>.cycle() =
+    fun <T> Iterable<T>.cycle(): Sequence<T> =
         generateSequence { this }.flatten()
 
 }

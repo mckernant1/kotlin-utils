@@ -1,9 +1,9 @@
 package com.mckernant1.commons.extensions.time
 
 import com.mckernant1.commons.extensions.time.Instants.intervalsBetween
-import com.mckernant1.commons.extensions.time.Instants.timeSince
-import com.mckernant1.commons.extensions.time.Instants.timeUntil
 import com.mckernant1.commons.extensions.time.Instants.timeUntilNextWhole
+import com.mckernant1.commons.extensions.time.Temporals.timeSince
+import com.mckernant1.commons.extensions.time.Temporals.timeUntil
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.time.Duration

@@ -1,5 +1,6 @@
 package com.mckernant1.commons.extensions.time
 
+import com.mckernant1.commons.extensions.time.Temporals.timeSince
 import java.time.Duration
 import java.time.Instant
 import java.time.temporal.TemporalAmount
@@ -27,16 +28,6 @@ object Instants {
     fun Instant.isBeforeNow(): Boolean = this.isBefore(Instant.now())
 
     fun Instant.isAfterNow(): Boolean = this.isAfter(Instant.now())
-
-    /**
-     * @return the time until the other instant
-     */
-    fun Instant.timeUntil(other: Instant): Duration = Duration.between(this, other)
-
-    /**
-     * @return the time since the other instant
-     */
-    fun Instant.timeSince(other: Instant): Duration = Duration.between(other, this)
 
     /**
      * For example if we are at time 2:30, and the unit is HOURS

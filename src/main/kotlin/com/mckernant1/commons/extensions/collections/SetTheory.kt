@@ -10,14 +10,11 @@ object SetTheory {
     }
 
     /**
-     * Returns all the elements in this and other
+     * Returns all the elements in this and other.
+     *
+     * Careful of std library intersect. It returns a set, where this returns a list.
+     * So duplicate entries can still be present in this implementation
      */
-    @Deprecated(
-        "Use Std library intersect instead",
-        ReplaceWith(
-            "this.intersect(other)"
-        )
-    )
     fun <T> Iterable<T>.intersect(other: Iterable<T>): List<T> {
         val otherSet = other.toHashSet()
         return this.filter { otherSet.contains(it) }
