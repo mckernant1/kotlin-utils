@@ -16,7 +16,7 @@ repositories {
 
 ```
 dependencies {
-    implementation("com.mckernant1.commons:kotlin-utils:0.2.1")
+    implementation("com.mckernant1:kotlin-utils:0.3.8")
 }
 ```
 
