@@ -1,11 +1,11 @@
 package com.mckernant1.commons.maps
 
-import com.mckernant1.commons.maps.ValueSortedIndexedMap
 import kotlin.random.Random
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
+import java.util.Comparator
 import java.util.UUID
 
 class ValueSortedIndexedMapTest {
@@ -22,6 +22,22 @@ class ValueSortedIndexedMapTest {
     }
 
     @Test
+    fun testCustomComparator() {
+        // Use a reverse order comparator for values
+        val m = ValueSortedIndexedMap<String, Int>(Comparator.reverseOrder())
+
+        m["a"] = 1
+        m["b"] = 2
+        m["c"] = 3
+
+        // With reverse comparator, the smallest according to the map is actually the largest natural value
+        assertEquals(3, m.minValues()?.key)
+        assertEquals(1, m.maxValues()?.key)
+
+        assertMapConsistent(m)
+    }
+
+    @Test
     fun testSameValue() {
 
         val m = ValueSortedIndexedMap<String, Int>()
@@ -33,9 +49,9 @@ class ValueSortedIndexedMapTest {
         assertEquals(1, m["Hellno"])
         assertNull(m["asfsdf"])
 
-        assertEquals(1, m.minValue()?.value)
-        assertEquals(1, m.minValue()?.value)
-        assertEquals(1, m.maxValue()?.value)
+        assertEquals(1, m.minValues()?.key)
+        assertEquals(1, m.minValues()?.key)
+        assertEquals(1, m.maxValues()?.key)
         assertEquals(2, m.size)
 
         assertMapConsistent(m)
@@ -55,8 +71,8 @@ class ValueSortedIndexedMapTest {
 
         assertEquals(3, m["Hello"])
 
-        assertEquals(3, m.minValue()!!.value)
-        assertEquals(3, m.maxValue()?.value)
+        assertEquals(3, m.minValues()?.key)
+        assertEquals(3, m.maxValues()?.key)
         assertEquals(1, m.size)
 
         assertMapConsistent(m)
@@ -75,8 +91,8 @@ class ValueSortedIndexedMapTest {
 
         assertEquals(1, m["Hello"])
 
-        assertEquals(1, m.minValue()!!.value)
-        assertEquals(1, m.maxValue()?.value)
+        assertEquals(1, m.minValues()?.key)
+        assertEquals(1, m.maxValues()?.key)
         assertEquals(1, m.size)
 
         assertMapConsistent(m)
@@ -93,8 +109,8 @@ class ValueSortedIndexedMapTest {
 
         assertNull(m.remove("Hello"))
         assertNull(m["Hello"])
-        assertNull(m.minValue())
-        assertNull(m.maxValue())
+        assertNull(m.minValues())
+        assertNull(m.maxValues())
         assertEquals(0, m.size)
 
         assertMapConsistent(m)
@@ -122,10 +138,10 @@ class ValueSortedIndexedMapTest {
         }
 
         assertFalse(m.isEmpty())
-        assertEquals(100_000, m.maxValue()?.value)
-        assertEquals("Value-100000", m.maxValue()?.key)
-        assertEquals(0, m.minValue()?.value)
-        assertEquals("Value-0", m.minValue()?.key)
+        assertEquals(100_000, m.maxValues()?.key)
+        assertEquals("Value-100000", m.maxValues()?.value?.firstOrNull())
+        assertEquals(0, m.minValues()?.key)
+        assertEquals("Value-0", m.minValues()?.value?.firstOrNull())
 
         assertMapConsistent(m)
     }
@@ -140,10 +156,10 @@ class ValueSortedIndexedMapTest {
         }
 
         assertFalse(m.isEmpty())
-        assertEquals(100_000, m.maxValue()?.value)
-        assertEquals("Value-100000", m.maxValue()?.key)
-        assertEquals(0, m.minValue()?.value)
-        assertEquals("Value-0", m.minValue()?.key)
+        assertEquals(100_000, m.maxValues()?.key)
+        assertEquals("Value-100000", m.maxValues()?.value?.firstOrNull())
+        assertEquals(0, m.minValues()?.key)
+        assertEquals("Value-0", m.minValues()?.value?.firstOrNull())
 
         assertMapConsistent(m)
     }

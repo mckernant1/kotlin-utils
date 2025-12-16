@@ -7,6 +7,31 @@ plugins {
     kotlin("jvm") version "2.2.21"
     id("org.jetbrains.kotlinx.kover") version "0.8.3"
     id("pl.allegro.tech.build.axion-release") version "1.18.9"
+    id("org.jetbrains.kotlinx.benchmark") version "0.4.15"
+    kotlin("plugin.allopen") version "2.0.20"
+}
+allOpen {
+    annotation("org.openjdk.jmh.annotations.State")
+}
+
+sourceSets {
+    register("benchmarks")
+}
+
+benchmark {
+    targets {
+        register("benchmarks")
+    }
+    configurations {
+        named("main") {
+
+        }
+    }
+}
+
+kotlin {
+    target.compilations.getByName("benchmarks")
+        .associateWith(target.compilations.getByName("main"))
 }
 
 scmVersion {
@@ -45,6 +70,7 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     // https://mvnrepository.com/artifact/org.jetbrains.lincheck/lincheck
     testImplementation("org.jetbrains.lincheck:lincheck:3.3.2")
+    "benchmarksImplementation"("org.jetbrains.kotlinx:kotlinx-benchmark-runtime:0.4.15")
 }
 
 kotlin {
@@ -59,11 +85,17 @@ tasks.test {
 }
 
 kover {
+    currentProject {
+        sources {
+            excludedSourceSets.add("benchmarks")
+        }
+    }
     reports {
         filters {
             includes {
                 packages("com.mckernant1.*")
             }
+
         }
     }
 }

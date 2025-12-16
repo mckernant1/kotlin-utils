@@ -1,18 +1,27 @@
 package com.mckernant1.commons.maps
 
+import org.jetbrains.lincheck.datastructures.IntGen
 import org.jetbrains.lincheck.datastructures.Operation
 import org.jetbrains.lincheck.datastructures.Param
 import org.jetbrains.lincheck.datastructures.StressOptions
 import org.jetbrains.lincheck.datastructures.StringGen
 import org.junit.jupiter.api.Test
 
-@Param(name = "key", gen = StringGen::class)
-class ValueSortedIndexedMapConcurrencyTest {
+@Param(
+    name = "key",
+    gen = StringGen::class
+)
+@Param(
+    name = "value",
+    gen = IntGen::class
+)
+class ValueIndexedDoubleMapConcurrencyTest {
 
-    private val map = ValueSortedIndexedMap<String, Int>()
+    private val map = ValueIndexedDoubleMap<String, Int>()
 
     @Operation
-    fun put(@Param(name = "key") key: String, value: Int) = map.put(key, value)
+    fun put(@Param(name = "key") key: String, @Param(name = "value") value: Int) =
+        map.put(key, value)
 
     @Operation
     fun get(@Param(name = "key") key: String): Int? = map[key]
@@ -24,10 +33,8 @@ class ValueSortedIndexedMapConcurrencyTest {
     fun clear() = map.clear()
 
     @Operation
-    fun minValues(): Map.Entry<Int, Set<String>>? = map.minValues()
-
-    @Operation
-    fun maxValues(): Map.Entry<Int, Set<String>>? = map.maxValues()
+    fun getKeysForValue(@Param(name = "value") value: Int): Set<String>? =
+        map.getKeysForValue(value)
 
     @Test
     fun stressTest() = StressOptions()
