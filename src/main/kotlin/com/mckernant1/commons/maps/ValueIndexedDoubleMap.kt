@@ -10,11 +10,13 @@ import kotlin.concurrent.write
  *
  * It is important that none of the values gotten from this data structure are mutable.
  *
- * All methods in this class return copies
+ * All collections methods in this class return copies. Get does not return a copy.
  *
  * This implementation uses locks around puts/removes, but not gets.
  * It also uses synchronized implementations of hashmap and treemap
  *
+ * Collections methods are slow because of copies.
+ * Ideally this Collection should be used for inserts and reads from the base map and index.
  *
  */
 open class ValueIndexedDoubleMap<K, V>(
@@ -32,22 +34,20 @@ open class ValueIndexedDoubleMap<K, V>(
     override fun get(key: K): V? = lock.read { baseMap[key] }
 
     override val entries: MutableSet<MutableMap.MutableEntry<K, V>>
-        get() = baseMap.entries.toMutableSet()
+        get() = lock.read { baseMap.entries.toMutableSet() }
 
     override val keys: MutableSet<K>
-        get() = baseMap.keys.toMutableSet()
+        get() = lock.read { baseMap.keys.toMutableSet() }
 
     override val size: Int
-        get() = baseMap.size
+        get() = lock.read { baseMap.size }
 
     override val values: MutableCollection<V>
-        get() = baseMap.values.toMutableList()
+        get() = lock.read { baseMap.values.toMutableList() }
 
-    override fun clear() {
-        lock.write {
-            baseMap.clear()
-            index.clear()
-        }
+    override fun clear(): Unit = lock.write {
+        baseMap.clear()
+        index.clear()
     }
 
 
@@ -68,25 +68,21 @@ open class ValueIndexedDoubleMap<K, V>(
         return v
     }
 
-    override fun remove(key: K): V? {
-        return lock.write { removeUnsafe(key) }
+    private fun putUnsafe(key: K, value: V): V? {
+        removeUnsafe(key)
+        val old = baseMap.put(key, value)
+
+        val keys = index[value] ?: mutableSetOf()
+        keys.add(key)
+        index[value] = keys
+        return old
     }
 
-    override fun putAll(from: Map<out K, V>) {
-        from.forEach(this::put)
-    }
+    override fun remove(key: K): V? = lock.write { removeUnsafe(key) }
 
-    override fun put(key: K, value: V): V? {
-        return lock.write {
-            removeUnsafe(key)
-            val old = baseMap.put(key, value)
+    override fun putAll(from: Map<out K, V>): Unit = lock.write { from.forEach(this::putUnsafe) }
 
-            val keys = index[value] ?: mutableSetOf()
-            keys.add(key)
-            index[value] = keys
-            return@write old
-        }
-    }
+    override fun put(key: K, value: V): V? = lock.write { putUnsafe(key, value) }
 
     override fun containsValue(value: V): Boolean = lock.read { index.containsKey(value) }
 

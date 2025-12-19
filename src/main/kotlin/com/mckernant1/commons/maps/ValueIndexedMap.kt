@@ -5,6 +5,10 @@ package com.mckernant1.commons.maps
  */
 interface ValueIndexedMap<K, V> : MutableMap<K, V> {
 
+    /**
+     * @param value to get the keys for
+     * @return null if there are no keys for the given value
+     */
     fun getKeysForValue(value: V): Set<K>?
 
 }
