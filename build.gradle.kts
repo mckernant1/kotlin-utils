@@ -58,7 +58,7 @@ dependencies {
     implementation("org.slf4j:slf4j-api:2.0.12")
 
     // Common
-    implementation("org.apache.commons:commons-lang3:3.18.0")
+    implementation("org.apache.commons:commons-lang3:3.20.0")
     implementation("org.apache.commons:commons-collections4:4.5.0")
     implementation("org.apache.commons:commons-math3:3.6")
     implementation("com.google.code.gson:gson:2.10")
