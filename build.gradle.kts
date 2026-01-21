@@ -4,7 +4,7 @@ plugins {
     `maven-publish`
     `java-library`
     signing
-    kotlin("jvm") version "2.2.21"
+    kotlin("jvm") version "2.3.0"
     id("org.jetbrains.kotlinx.kover") version "0.9.4"
     id("pl.allegro.tech.build.axion-release") version "1.21.1"
     id("org.jetbrains.kotlinx.benchmark") version "0.4.15"
