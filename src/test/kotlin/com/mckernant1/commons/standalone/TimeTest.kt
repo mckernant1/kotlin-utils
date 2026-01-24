@@ -1,5 +1,7 @@
 package com.mckernant1.commons.standalone
 
+import com.mckernant1.commons.standalone.Measure.measureDuration
+import com.mckernant1.commons.standalone.Measure.measureOperation
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -8,7 +10,7 @@ import java.time.Duration
 internal class TimeTest {
 
     @Test
-    fun measureDuration() {
+    fun testMeasureDuration() {
         val x = measureDuration {
             1 + 2
         }
