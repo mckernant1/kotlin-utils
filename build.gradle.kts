@@ -67,6 +67,7 @@ dependencies {
 
     // Testing
     testImplementation("org.junit.jupiter:junit-jupiter:6.0.2")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     // https://mvnrepository.com/artifact/org.jetbrains.lincheck/lincheck
     testImplementation("org.jetbrains.lincheck:lincheck:3.4")
