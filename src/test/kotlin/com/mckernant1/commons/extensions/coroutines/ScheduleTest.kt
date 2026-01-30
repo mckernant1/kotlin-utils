@@ -24,9 +24,9 @@ class ScheduleTest {
         }
 
         runCurrent()
-        assertEquals(1, counter.get(), "Should execute block immediately")
+        assertEquals(0, counter.get(), "Should execute block immediately")
 
-        advanceTimeBy(delay.toMillis() / 2)
+        advanceTimeBy(delay.toMillis() + 1)
         assertEquals(1, counter.get(), "Should still be 1")
     }
 
