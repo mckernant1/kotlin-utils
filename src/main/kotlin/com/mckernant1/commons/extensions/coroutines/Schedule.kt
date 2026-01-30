@@ -14,9 +14,12 @@ object Schedule {
     /**
      * Schedule a coroutine to run after a specified delay.
      */
-    fun CoroutineScope.schedule(delay: Duration, block: suspend () -> Unit): Job = launch {
-        block()
+    fun CoroutineScope.schedule(
+        delay: Duration,
+        block: suspend () -> Unit
+    ): Job = launch {
         delay(delay)
+        block()
     }
 
     /**
@@ -31,7 +34,10 @@ object Schedule {
         while (isActive) {
             val start = Instant.now()
             block()
-            delay(period - Duration.between(start, Instant.now()))
+            val remaining = period - Duration.between(start, Instant.now())
+            if (remaining.isPositive) {
+                delay(remaining)
+            }
         }
     }
 
