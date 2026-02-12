@@ -7,7 +7,7 @@ plugins {
     kotlin("jvm") version "2.2.21"
     id("org.jetbrains.kotlinx.kover") version "0.9.6"
     id("pl.allegro.tech.build.axion-release") version "1.21.1"
-    id("org.jetbrains.kotlinx.benchmark") version "0.4.15"
+    id("org.jetbrains.kotlinx.benchmark") version "0.4.16"
     kotlin("plugin.allopen") version "2.0.20"
 }
 allOpen {
@@ -71,7 +71,7 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     // https://mvnrepository.com/artifact/org.jetbrains.lincheck/lincheck
     testImplementation("org.jetbrains.lincheck:lincheck:3.4")
-    "benchmarksImplementation"("org.jetbrains.kotlinx:kotlinx-benchmark-runtime:0.4.15")
+    "benchmarksImplementation"("org.jetbrains.kotlinx:kotlinx-benchmark-runtime:0.4.16")
 }
 
 kotlin {
