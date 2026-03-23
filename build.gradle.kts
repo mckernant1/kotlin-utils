@@ -63,7 +63,7 @@ dependencies {
     implementation("org.apache.commons:commons-math3:3.6")
     implementation("com.google.code.gson:gson:2.10")
     implementation("com.google.guava:guava:33.2.1-jre")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.21.1")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.21.2")
 
     // Testing
     testImplementation("org.junit.jupiter:junit-jupiter:6.0.3")
