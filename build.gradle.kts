@@ -65,7 +65,7 @@ dependencies {
     implementation("org.apache.commons:commons-math3:3.6")
     implementation("com.google.code.gson:gson:2.10")
     implementation("com.google.guava:guava:33.2.1-jre")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.21.1")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.21.2")
 
     implementation("io.micrometer:micrometer-observation:1.16.1")
     implementation("io.micrometer:micrometer-commons:1.16.1")
