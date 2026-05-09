@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     `maven-publish`
@@ -53,6 +54,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:2.3.20")
     implementation("org.jetbrains.kotlin:kotlin-reflect:2.3.20")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.10.2")
 
     // Logging
     implementation("org.slf4j:slf4j-api:2.0.12")
@@ -65,9 +67,18 @@ dependencies {
     implementation("com.google.guava:guava:33.2.1-jre")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.21.1")
 
+    implementation("io.micrometer:micrometer-observation:1.16.1")
+    implementation("io.micrometer:micrometer-commons:1.16.1")
+    implementation("io.micrometer:micrometer-tracing:1.6.1")
+    implementation("io.micrometer:micrometer-core:1.16.1")
+
+
     // Testing
-    testImplementation("org.junit.jupiter:junit-jupiter:6.0.3")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.11.0")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
+    testImplementation("org.mockito:mockito-core:5.11.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.4.0")
+    testImplementation("org.mockito:mockito-inline:5.2.0")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     // https://mvnrepository.com/artifact/org.jetbrains.lincheck/lincheck
     testImplementation("org.jetbrains.lincheck:lincheck:3.4")
@@ -79,6 +90,11 @@ kotlin {
         apiVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_0)
         jvmTarget.set(JvmTarget.JVM_21)
     }
+}
+
+tasks.withType<JavaCompile> {
+    targetCompatibility = "21"
+    sourceCompatibility = "21"
 }
 
 tasks.test {
@@ -151,4 +167,13 @@ publishing {
             }
         }
     }
+}
+val compileKotlin: KotlinCompile by tasks
+compileKotlin.compilerOptions {
+    freeCompilerArgs.set(listOf("-Xcontext-parameters"))
+}
+
+val compileTestKotlin: KotlinCompile by tasks
+compileTestKotlin.compilerOptions {
+    freeCompilerArgs.set(listOf("-Xcontext-parameters"))
 }
