@@ -81,7 +81,7 @@ dependencies {
     testImplementation("org.mockito:mockito-inline:5.2.0")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     // https://mvnrepository.com/artifact/org.jetbrains.lincheck/lincheck
-    testImplementation("org.jetbrains.lincheck:lincheck:3.4")
+    testImplementation("org.jetbrains.lincheck:lincheck:3.6")
     "benchmarksImplementation"("org.jetbrains.kotlinx:kotlinx-benchmark-runtime:0.4.17")
 }
 
