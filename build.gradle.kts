@@ -6,7 +6,7 @@ plugins {
     `java-library`
     signing
     kotlin("jvm") version "2.4.0"
-    id("org.jetbrains.kotlinx.kover") version "0.9.7"
+    id("org.jetbrains.kotlinx.kover") version "0.9.9"
     id("pl.allegro.tech.build.axion-release") version "1.21.1"
     id("org.jetbrains.kotlinx.benchmark") version "0.4.17"
     kotlin("plugin.allopen") version "2.0.20"
